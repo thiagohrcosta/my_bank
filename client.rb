@@ -1,9 +1,16 @@
 class Client
-
   attr_reader :client_code, :name, :balance, :credit_card_number
   attr_accessor :deposit, :withdraw, :password
 
-  def initialize(client_code, name, balance, password, credit_card_number)
+  # def initialize(client_code, name, balance, password, credit_card_number)
+  #   @client_code = client_code
+  #   @name = name
+  #   @balance = balance
+  #   @password = password
+  #   @credit_card_number = credit_card_number
+  # end
+
+    def initialize(client_code, name, balance, password, credit_card_number)
     @client_code = client_code
     @name = name
     @balance = balance
@@ -22,21 +29,34 @@ class Client
       "You don't have funds for that"
     end
   end
-
 end
 
 class VipClient < Client
   attr_reader :super_limit
 
   def initialize(args = {})
-    super(args[:client_code], args[:name], args[:balance], args[:password], args[:credit_card_number])
+    super(
+      args[:client_code],
+      args[:name],
+      args[:balance],
+      args[:password],
+      args[:credit_card_number]
+      )
     # ou + @balance no lugar do args[:balance]
     @super_limit = args[:super_limit] + args[:balance]
   end
 
+  def deposit(amount)
+    @balance += amount
+    @super_limit += amount
+  end
+
   def withdraw(amount)
-    if amount < @super_limit
+    if @balance < 0 && @super_limit <= 1000
+      puts "Insuficient funds. You cant use your Super Limit if you have $ 1000 or less."
+    elsif amount < @super_limit
       @balance -= amount
+      @super_limit -= amount
     else
       "You don't have funds for that"
     end

@@ -2,13 +2,15 @@ require_relative "client"
 
 array_of_clients = []
 
-
-puts "Welcome to Le Wagon's Bank."
-puts 'Please insert your client code:'
+puts "|==================================================================|"
+puts "| Welcome to Le Wagon's Bank.                                      |"
+puts "| Please insert your client code:                                  |"
+puts "| [VIP account beggining with 0] [Normal Account beggining with 1] |"
+puts "|==================================================================|"
 
 client_typed_code = gets.chomp
 
-if client_typed_code.match(/^0\d{2}/)
+if client_typed_code.match(/^0\d{2}\w*/)
   puts "Welcome VIP CLIENT"
 
   puts 'Please insert your name:'
@@ -37,19 +39,50 @@ if client_typed_code.match(/^0\d{2}/)
 
   p array_of_clients
 
+
+  puts "|==================================================================|"
+  puts "| What would you like to do now #{new_client.name}"
+  puts "| [1] Deposit | [2] Withdraw | [3] Balance and Card | [4] Exit     | "
+  puts "|==================================================================|"
+
+  client_choice = gets.chomp.to_i
+
+  while client_choice != 4
+    case client_choice
+    when 1
+
+      puts "How much would you like to deposit?"
+      amount = gets.chomp.to_i
+      new_client.deposit(amount)
+
+      p array_of_clients
+
+      puts "|==================================================================|"
+      puts "| What would you like to do now #{new_client.name}"
+      puts "| [1] Deposit | [2] Withdraw | [3] Balance and Card | [4] Exit     | "
+      puts "|==================================================================|"
+      client_choice = gets.chomp.to_i
+    when 2
+
+      puts "How much would you like to withdraw?"
+      amount = gets.chomp.to_i
+      new_client.withdraw(amount)
+
+      p array_of_clients
+
+
+      puts "|==================================================================|"
+      puts "| What would you like to do now #{new_client.name}"
+      puts "| [1] Deposit | [2] Withdraw | [3] Balance and Card | [4] Exit     | "
+      puts "|==================================================================|"
+      client_choice = gets.chomp.to_i
+    else
+      break
+    end
+  end
+
 else
-  puts 'Please insert your name:'
-  client_name = gets.chomp
-
-  puts 'How much for your first deposit?'
-  client_first_deposit = gets.chomp.to_i
-
-  puts 'Now please set your password:'
-  client_password = gets.chomp
-
-  generic_credit_card = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '5', '5', '4', '4'].shuffle.join()
-
-  puts "You receive the #{generic_credit_card} as your credit card number. Store it in a safe place."
+  puts "No normal accounts allowed at moment."
 end
 
 
