@@ -72,7 +72,7 @@ end
 # puts new_client.withdraw(4000)
 
 # puts "======================="
-# p new_vip_client = VipClient.new("002LeWagon", "Payton Manning", 2000, "nfl123", '4545-4545-4545-4545', 1000)
+# p new_vip_client = VipClient.new("002LeWagon", "Peyton Manning", 2000, "nfl123", '4545-4545-4545-4545', 1000)
 # puts new_client.withdraw(2500)
 
 
