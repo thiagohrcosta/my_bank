@@ -24,7 +24,7 @@ if client_typed_code.match(/^0\d{2}\w*/)
 
   generic_credit_card = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '5', '5', '4', '4'].shuffle.join()
 
-  puts "You receive the #{generic_credit_card} as your credit card number. Store it in a safe place."
+  puts "You received the #{generic_credit_card} as your credit card number. Store it in a safe place."
 
   new_client = VipClient.new(
     client_code: client_typed_code,
@@ -70,6 +70,17 @@ if client_typed_code.match(/^0\d{2}\w*/)
 
       p array_of_clients
 
+
+      puts "|==================================================================|"
+      puts "| What would you like to do now #{new_client.name}"
+      puts "| [1] Deposit | [2] Withdraw | [3] Balance and Card | [4] Exit     | "
+      puts "|==================================================================|"
+      client_choice = gets.chomp.to_i
+    when 3
+      puts "|==================================================================|"
+      puts "Your balance is : $ #{new_client.balance}"
+      puts "Your Super Limit is : $ #{new_client.super_limit} "
+      puts "Your credit card number is #{new_client.credit_card_number}"
 
       puts "|==================================================================|"
       puts "| What would you like to do now #{new_client.name}"
