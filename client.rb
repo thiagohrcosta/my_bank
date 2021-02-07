@@ -1,5 +1,5 @@
 class Client
-  attr_reader :client_code, :name, :balance, :credit_card_number
+  attr_reader :client_code, :name, :balance, :credit_card_number, :encripted_credit_card
   attr_accessor :deposit, :withdraw, :password
 
   # def initialize(client_code, name, balance, password, credit_card_number)
@@ -10,7 +10,7 @@ class Client
   #   @credit_card_number = credit_card_number
   # end
 
-    def initialize(client_code, name, balance, password, credit_card_number)
+  def initialize(client_code, name, balance, password, credit_card_number)
     @client_code = client_code
     @name = name
     @balance = balance
@@ -29,6 +29,7 @@ class Client
       "You don't have funds for that"
     end
   end
+
 end
 
 class VipClient < Client
@@ -44,6 +45,7 @@ class VipClient < Client
       )
     # ou + @balance no lugar do args[:balance]
     @super_limit = args[:super_limit] + args[:balance]
+
   end
 
   def deposit(amount)
@@ -61,6 +63,10 @@ class VipClient < Client
       "You don't have funds for that"
     end
   end
+
+  # def encripted_credit_card(credit_card_number)
+  #   credit_card_number.gsub(/\d{6}/, "*********" )
+  # end
 
 end
 

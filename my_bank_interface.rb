@@ -10,11 +10,12 @@ puts "|==================================================================|"
 
 client_typed_code = gets.chomp
 
-if client_typed_code.match(/^0\d{2}\w*/)
+if client_typed_code.match(/^0\d+\w*/)
   puts "Welcome VIP CLIENT"
 
   puts 'Please insert your name:'
   client_name = gets.chomp
+  client_name.upcase!
 
   puts 'How much for your first deposit?'
   client_first_deposit = gets.chomp.to_i
@@ -81,6 +82,7 @@ if client_typed_code.match(/^0\d{2}\w*/)
       puts "Your balance is : $ #{new_client.balance}"
       puts "Your Super Limit is : $ #{new_client.super_limit} "
       puts "Your credit card number is #{new_client.credit_card_number}"
+      puts "|==================================================================|"
 
       puts "|==================================================================|"
       puts "| What would you like to do now #{new_client.name}"
@@ -95,29 +97,3 @@ if client_typed_code.match(/^0\d{2}\w*/)
 else
   puts "No normal accounts allowed at moment."
 end
-
-
-# puts "What do you whant to do now? [1] Deposit [2] Withdraw [3] Check my balance [4] See Credit card number [5] Exit"
-
-# client_choice = gets.chomp.to_i
-
-# while client_choice != 5
-#   if client_choice == 1
-#     puts "How  much you would like to deposit #{client_name}"
-#     amount = gets.chomp.to_i
-#     deposit(amount)
-#   elsif client_choice == 2
-#     puts "How much you would like to withdraw #{client_name}"
-#     amount = gets.chomp.to_i
-
-#     if amount > @balance
-#       puts "You don't have this much to withdraw"
-#     else
-#       withdraw(amount)
-#     end
-
-#   else
-#     puts "Erro"
-#   end
-
-# end
